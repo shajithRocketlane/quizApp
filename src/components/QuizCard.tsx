@@ -21,8 +21,7 @@ function QuizCard({quiz_id,quiz_name,difficulty}:QuizInfoProps) {
         </div>
         <p 
         onClick={()=>{
-        dispatch(getQuiz(quiz_id))
-        navigate('/')
+        dispatch(getQuiz(quiz_id)).then(res => navigate('/')).catch(err => alert('There was an error'))
         }}
         className="diff">{difficulty}</p>
     </div>

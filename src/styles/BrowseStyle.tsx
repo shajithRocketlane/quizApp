@@ -18,8 +18,8 @@ export const BrowseStyle = styled.div`
         padding: 15px;
         outline: none;
         border: 3px solid lightblue;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
         background-color: #13274F;
         font-size: 15px;
         color:white;
@@ -28,8 +28,8 @@ export const BrowseStyle = styled.div`
     button{
         padding: 0px 10px;
         border: none;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius:5px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius:10px;
         outline: none;
         color: white;
         background-color: #002244;
@@ -53,8 +53,8 @@ export const BrowseStyle = styled.div`
             div{
                 border: 2px solid lightblue;
                 border-bottom: 0px;
-                border-top-right-radius: 5px;
-                border-top-left-radius: 5px;
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
                 display: flex;
                 justify-content: space-between;
             }
@@ -62,12 +62,13 @@ export const BrowseStyle = styled.div`
                 background-color: #002244;
                 padding: 15px 25px;
                 width: 100%;
+                border-top-left-radius: 10px;
                 
             }
             .diff{
                 padding: 15px 25px;
                 border: 2px solid lightblue;
-                border-radius: 5px;
+                border-radius: 10px;
                 border-top: 0px;
                 border-top-right-radius: 0px;
                 border-top-left-radius: 0px;

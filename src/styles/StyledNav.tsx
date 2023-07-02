@@ -20,8 +20,9 @@ export const StyledNav = styled.nav`
             background-color: #002244;
             color: white;
             border: none;
-            border-radius:5px;
+            border-radius:10px;
             font-size: 14px;
+            border: 2px solid lightblue;
         }
     }
     button:hover{

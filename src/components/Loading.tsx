@@ -1,4 +1,11 @@
-.lds-roller {
+import { styled } from "styled-components";
+
+const Loader = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  .lds-roller {
     display: inline-block;
     position: relative;
     width: 80px;
@@ -82,4 +89,21 @@
       transform: rotate(360deg);
     }
   }
-  
+`;
+
+export default function Loading() {
+  return (
+    <Loader>
+      <div className="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </Loader>
+  );
+}

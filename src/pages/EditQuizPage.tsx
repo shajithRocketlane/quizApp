@@ -5,7 +5,6 @@ import {
   deleteQuestion,
   deleteQuiz,
   getEditQuiz,
-  selectQuestions,
   updateQuestion,
 } from "../reducers/editQuizSlice";
 import { EditStyle } from "../styles/EditStyle";
@@ -14,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { CreateQuizStyle } from "../styles/CreateQuizStyle";
+import Loading from "../components/Loading";
 
 function EditQuizPage() {
   const [component, setComponent] = useState<"edit" | "add">("edit");
@@ -26,12 +26,12 @@ function EditQuizPage() {
   }
 
   function delQuiz() {
-    dispatch(deleteQuiz(qid)).then(res => navigate('/browse')).catch(err => alert('There was an error'));
+    dispatch(deleteQuiz(qid))
+      .then((res) => navigate("/browse"))
+      .catch((err) => alert("There was an error"));
   }
 
   function Edit({ current }) {
-    // const [quizName,setQuizName] = useState<string>('')
-    // const [difficulty,setDifficulty] = useState<string>('None')
     const [question, setQuestion] = useState<string>(
       current !== undefined ? current.question : ""
     );
@@ -85,16 +85,6 @@ function EditQuizPage() {
     return (
       <CreateQuizStyle>
         <p className="title">Edit</p>
-        {/* <div className='name-diff'>
-                    <input type="text" value={quizName} placeholder="Ex:Java Quiz"
-                        onChange = {(e)=>{setQuizName(e.target.value)}}
-                    />
-                    <select value={difficulty} onChange={(e)=>{setDifficulty(e.target.value)}}>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option>
-                    </select>
-                </div> */}
         <div className="question-edit">
           <div>
             <input
@@ -341,42 +331,48 @@ function EditQuizPage() {
                 </button>
               </div>
             </div>
-            <div className="questions">
-              {quiz.questions?.map((question, index) => (
-                <div key={index}>
-                  <ul>
-                    {
-                      <div>
-                        <p
-                          onClick={() => {
-                            setCurrent(question);
-                            console.log(question);
-                          }}
-                        >
-                          Question : {question.question}
-                        </p>
-                        <p
-                          onClick={() => {
-                            setCurrent(question);
-                            console.log(question);
-                          }}
-                        >
-                          Answer : {question.answer}
-                        </p>
-                        <ul>
-                          {question.options.map((option, idx) => (
-                            <li key={idx}>{option.option}</li>
-                          ))}
-                        </ul>
-                        <button onClick={() => delQuestion(index)}>
-                          Remove
-                        </button>
-                      </div>
-                    }
-                  </ul>
-                </div>
-              ))}
-            </div>
+            {
+              quiz.questions
+              ?
+              <div className="questions">
+                {quiz.questions?.map((question, index) => (
+                  <div key={index}>
+                    <ul>
+                      {
+                        <div>
+                          <p
+                            onClick={() => {
+                              setCurrent(question);
+                              console.log(question);
+                            }}
+                          >
+                            Question : {question.question}
+                          </p>
+                          <p
+                            onClick={() => {
+                              setCurrent(question);
+                              console.log(question);
+                            }}
+                          >
+                            Answer : {question.answer}
+                          </p>
+                          <ul>
+                            {question.options.map((option, idx) => (
+                              <li key={idx}>{option.option}</li>
+                            ))}
+                          </ul>
+                          <button onClick={() => delQuestion(index)}>
+                            Remove
+                          </button>
+                        </div>
+                      }
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              :
+              <Loading/>
+            }
           </div>
           {component !== "edit" ? (
             <Edit current={current} />
